@@ -223,8 +223,7 @@
     (pragma::string "bpc_skel_strtoupper($1)" ($bstring->string (string-copy str))))
 
 (defbuiltin (skel_c_strtoupper_at str index)
-    (set! index (mkelongw 'skel_c_strtoupper_at 1 index))
-    (when index
+    (ensure-elong 'skel_c_strtoupper_at index 2
         (let ((str (mkstr str)))
             (if (or (<elong index #e0)
                     (>=elong index (fixnum->elong (string-length str))))
